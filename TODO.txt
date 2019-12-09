@@ -1,0 +1,6 @@
+TODO:
+- Router (global router)
+- VUEX
+- GRAPH QL (VUEX)
+- API
+- Créer alias pour import
