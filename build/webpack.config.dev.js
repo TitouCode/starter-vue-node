@@ -78,7 +78,10 @@ module.exports = {
     resolve: {
         // Aliases to root components and assets
         alias: {
+            root: path.resolve(__dirname, '../'),
+            config: path.resolve(__dirname, '../config'),
             assets: path.resolve(__dirname, '../src/assets'),
+            services: path.resolve(__dirname, '../src/services'),
         }
     } 
 }

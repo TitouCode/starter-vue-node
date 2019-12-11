@@ -1,6 +1,10 @@
 TODO:
 - Router (global router)
-- VUEX
+- VUEX (api, service axio)
 - GRAPH QL (VUEX)
-- API
 - Créer alias pour import
+
+TODO BACK
+- Créer un server
+- GRAPHQL
+- MongoDB ? (ca se tente oklm)
