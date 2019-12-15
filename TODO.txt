@@ -1,8 +1,7 @@
 TODO:
 - Router (global router)
-- VUEX (api, service axio)
 - GRAPH QL (VUEX)
-- Créer alias pour import
+- SERVICE FOR QUERY 
 
 TODO BACK
 - Créer un server

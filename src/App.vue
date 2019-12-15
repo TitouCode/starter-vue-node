@@ -6,45 +6,52 @@
         <img src="public/assets/cute_img/cute.jpg" width=50 height=50>
         <div class="orange" />
     </div>
-    <button @click="clickToFetch">Fetch</button>
-    <div
-        class="rows-container"
-        v-if="displayData"
-    >
+    <div>
+        <button @click="clickToFetch">Fetch</button>
         <div
-            class="row-block"
-            v-for="row in rows"
-            :key="row.id"  
-        >{{ row.title }}</div>
+            class="rows-container"
+            v-if="isLoading"
+        >
+            ...loading
+        </div>
+        <div
+            class="rows-container"
+            v-else
+        >
+            <div
+                class="row-block"
+                v-for="row in rows"
+                :key="row.id"  
+            >{{ row.title }}</div>
+        </div>
     </div>
   </div>
 </template>
 
 <script>
     import { HTTPRequest } from 'services/http-common'
+    import { mapState } from 'vuex'
 
     export default {
         name: 'App',
         data: () => {
             return {
                 orange: 'Coucou c\'est  orange !!!',
-                displayOrange: false,
-                displayData: false,
-                rows: []
+                displayOrange: false
             }   
+        },
+        computed: {
+            ...mapState({
+                rows: s => s.todos.rows,
+                isLoading: s => s.todos.isLoading
+            })
         },
         methods: {
             clickMe: function() {
                 return (this.displayOrange = !this.displayOrange);
             },
             clickToFetch: async function() {
-                // TODO: create STORE for VUEX
-                const res = await HTTPRequest('todos');
-                if (res && (res.data && res.data.length)) {
-                    this.rows = res.data;
-                    this.displayData = true;
-                }
-                return true;
+                return await this.$store.dispatch('todos/findAll');
             }
         }
     }
@@ -62,8 +69,6 @@
         }
     }
     .orange {
-        /*TODO: change path to img*/
-        // background: url('assets/cute.jpg') center no-repeat;
         background: url('~assets/cute_img/cute.jpg') center no-repeat;
         background-size: contain;
         height: 50px;
@@ -78,7 +83,8 @@
         .row-block {
             border: solid 1px grey;
             // margin-right: 3px; 
-            margin: 0 3px 3px 0; 
+            margin: 0 3px 3px 0;
+            padding: 3px 5px;
             width: 100px;
         }
     }

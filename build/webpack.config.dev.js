@@ -82,6 +82,7 @@ module.exports = {
             config: path.resolve(__dirname, '../config'),
             assets: path.resolve(__dirname, '../src/assets'),
             services: path.resolve(__dirname, '../src/services'),
+            store: path.resolve(__dirname, '../src/store'),
         }
     } 
 }
