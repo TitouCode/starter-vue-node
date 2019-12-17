@@ -6,32 +6,18 @@
         <img src="public/assets/cute_img/cute.jpg" width=50 height=50>
         <div class="orange" />
     </div>
+    <div class="nav-bar">
+        <router-link to="/post">Go see Posts</router-link>
+        <router-link to="/todo">Go to Todos</router-link>
+ 
+    </div>
     <div>
-        <button @click="clickToFetch">Fetch</button>
-        <div
-            class="rows-container"
-            v-if="isLoading"
-        >
-            ...loading
-        </div>
-        <div
-            class="rows-container"
-            v-else
-        >
-            <div
-                class="row-block"
-                v-for="row in rows"
-                :key="row.id"  
-            >{{ row.title }}</div>
-        </div>
+        <router-view></router-view>
     </div>
   </div>
 </template>
 
 <script>
-    import { HTTPRequest } from 'services/http-common'
-    import { mapState } from 'vuex'
-
     export default {
         name: 'App',
         data: () => {
@@ -40,18 +26,10 @@
                 displayOrange: false
             }   
         },
-        computed: {
-            ...mapState({
-                rows: s => s.todos.rows,
-                isLoading: s => s.todos.isLoading
-            })
-        },
+        computed: {},
         methods: {
             clickMe: function() {
                 return (this.displayOrange = !this.displayOrange);
-            },
-            clickToFetch: async function() {
-                return await this.$store.dispatch('todos/findAll');
             }
         }
     }
@@ -73,19 +51,5 @@
         background-size: contain;
         height: 50px;
         width: 50px;
-    }
-
-    .rows-container {
-        display: flex;
-        flex-wrap: wrap;
-        height: 100%;
-        width: 100%;
-        .row-block {
-            border: solid 1px grey;
-            // margin-right: 3px; 
-            margin: 0 3px 3px 0;
-            padding: 3px 5px;
-            width: 100px;
-        }
     }
 </style>
