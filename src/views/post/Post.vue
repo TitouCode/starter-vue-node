@@ -23,7 +23,6 @@
 </template>
 
 <script>
-    import { HTTPRequest } from 'services/http-common'
     import { mapState } from 'vuex'
 
     export default {

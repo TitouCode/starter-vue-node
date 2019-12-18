@@ -1,16 +1,6 @@
 <template>
   <div>
-    <div class="clickMe" @click="clickMe">Click Me</div>
-    <div v-if="displayOrange">
-        <h1 class="title" >{{ orange }}</h1>
-        <img src="public/assets/cute_img/cute.jpg" width=50 height=50>
-        <div class="orange" />
-    </div>
-    <div class="nav-bar">
-        <router-link to="/post">Go see Posts</router-link>
-        <router-link to="/todo">Go to Todos</router-link>
- 
-    </div>
+      <NavBar />
     <div>
         <router-view></router-view>
     </div>
@@ -18,38 +8,27 @@
 </template>
 
 <script>
+    import NavBar from 'components/navigation/NavBar.vue'
+
     export default {
         name: 'App',
+        components: {
+            NavBar
+        },
         data: () => {
-            return {
-                orange: 'Coucou c\'est  orange !!!',
-                displayOrange: false
-            }   
+            return {}   
         },
         computed: {},
-        methods: {
-            clickMe: function() {
-                return (this.displayOrange = !this.displayOrange);
-            }
-        }
+        methods: {}
     }
 </script>
 
 <style lang="scss">
-    .title {
-        color: orange;
-        font: 24px/24px 'Arial', sans-serif;
+    * {
+        box-sizing: border-box;
     }
-    .clickMe {
-        &:hover {
-            color: orange;
-            cursor: pointer;
-        }
-    }
-    .orange {
-        background: url('~assets/cute_img/cute.jpg') center no-repeat;
-        background-size: contain;
-        height: 50px;
-        width: 50px;
+    body {
+        margin: 0;
+        padding: 0;
     }
 </style>
