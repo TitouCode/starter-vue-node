@@ -3,21 +3,20 @@
         <div class="title-container">
             <h2 class="title-content">List of Todos</h2>
             <button
+                v-if="!isLoading"
                 @click="clickToFetch"
                 class="title-button"
             >
                 <span class="title-button-title">F</span>
             </button>
-        </div>
-        <div
-            class="loader-container"
-            v-if="isLoading"
-        >
-            ...loading
+            <CircleLoader
+                v-else
+                class="loader-container"
+            />
         </div>
         <div
             class="todos-container"
-            v-else
+            v-if="!isLoading"
         >
             <div
                 class="todo-block"
@@ -34,9 +33,13 @@
 
 <script>
     import { mapState } from 'vuex'
+    import CircleLoader from 'components/loaders/CircleLoader.vue'
 
     export default {
         name: 'Todo',
+        components: {
+            CircleLoader
+        },
         data: () => {
             return {}   
         },
@@ -91,6 +94,9 @@
                     transform: color .15s ease-out;
                 }
             }
+        }
+        .loader-container {
+            margin-left: 15px; 
         }
     }
     .todos-container {
