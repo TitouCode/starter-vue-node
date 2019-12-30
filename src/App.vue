@@ -1,7 +1,7 @@
 <template>
   <div>
-      <NavBar />
-    <div>
+      <NavBar class="nav-bar-home" />
+    <div class="app-view-container">
         <router-view></router-view>
     </div>
   </div>
@@ -30,5 +30,14 @@
     body {
         margin: 0;
         padding: 0;
+        font-family: sans-serif;
+    }
+    .nav-bar-home {
+        position: fixed;
+        top: 0;
+        z-index: 100;
+    }
+    .app-view-container {
+        padding-top: 50px;
     }
 </style>

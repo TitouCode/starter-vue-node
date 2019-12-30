@@ -1,25 +1,35 @@
 <template>
-  <div>
     <div>
-        <button @click="clickToFetch">Fetch</button>
+        <div class="title-container">
+            <h2 class="title-content">List of Todos</h2>
+            <button
+                @click="clickToFetch"
+                class="title-button"
+            >
+                <span class="title-button-title">F</span>
+            </button>
+        </div>
         <div
-            class="rows-container"
+            class="loader-container"
             v-if="isLoading"
         >
             ...loading
         </div>
         <div
-            class="rows-container"
+            class="todos-container"
             v-else
         >
             <div
-                class="row-block"
+                class="todo-block"
                 v-for="row in rows"
-                :key="row.id"  
-            >{{ row.title }}</div>
+                :key="row.id"
+                :class="{ 'checked': row.completed }"
+            >
+                <div class="todo-check" />
+                <div class="todo-title">{{ row.title }}</div>
+            </div>
         </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -51,17 +61,85 @@
 </script>
 
 <style lang="scss">
-    .rows-container {
+    @import 'styles/main.scss';
+
+    .title-container {
         display: flex;
-        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center; 
+        margin: 15px 0 15px;
+        padding-left: 10px; 
+        .title-content {
+            font-size: 30px;
+        }
+        .title-button {
+            background: none;
+            border: solid 2px $green;
+            border-radius: 50%; 
+            height: 25px;
+            margin-left: 15px;
+            width: 25px;
+            text-align: center;
+            @include circle-after-hover($green, 50px);
+            .title-button-title {
+                color: $black;
+                transform: color .15s ease-in;    
+            }
+            &:hover {
+                .title-button-title {
+                    color: $white;
+                    transform: color .15s ease-out;
+                }
+            }
+        }
+    }
+    .todos-container {
         height: 100%;
+        padding: 10px;
         width: 100%;
-        .row-block {
-            border: solid 1px grey;
-            // margin-right: 3px; 
-            margin: 0 3px 3px 0;
-            padding: 3px 5px;
-            width: 100px;
+        .todo-block {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 5px 0;
+        }
+        .checked {
+            .todo-check {
+                background: $green;
+                &::after, &::before {
+                    visibility: visible;
+                } 
+            }  
+            .todo-title {
+                text-decoration: line-through; 
+                font-style: italic;
+                opacity: .6;
+            }  
+        }
+        .todo-check {
+            border: solid 2px $green;
+            height: 20px;
+            margin-right: 5px; 
+            overflow: hidden;
+            position: relative;
+            width: 20px;
+            &::after, &::before {
+                visibility: hidden; 
+                content: '';
+                background-color: $white; 
+                height:2px;
+                position: absolute;
+                transform-origin: left;
+                width: 25px;
+            }
+            &::before {
+                top: -1px;
+                transform: rotate(45deg);
+            }
+            &::after {
+                bottom: -2px;
+                left: -1px;
+                transform: rotate(-45deg);
+            }
         }
     }
 </style>

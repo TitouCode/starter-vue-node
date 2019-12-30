@@ -26,6 +26,7 @@
     @import 'styles/main.scss';
 
     .nav-bar-container {
+        background: $white;
         border-bottom: solid 2px $green;
         height: 50px;
         width: 100%;

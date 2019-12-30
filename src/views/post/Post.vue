@@ -1,23 +1,21 @@
 <template>
   <div>
-    <div>
-        <button @click="clickToFetch">Fetch</button>
+    <button @click="clickToFetch">Fetch</button>
+    <div
+        class="rows-container"
+        v-if="isLoading"
+    >
+        ...loading
+    </div>
+    <div
+        class="rows-container"
+        v-else
+    >
         <div
-            class="rows-container"
-            v-if="isLoading"
-        >
-            ...loading
-        </div>
-        <div
-            class="rows-container"
-            v-else
-        >
-            <div
-                class="row-block"
-                v-for="row in rows"
-                :key="row.id"  
-            >{{ row.title }}</div>
-        </div>
+            class="row-block"
+            v-for="row in rows"
+            :key="row.id"  
+        >{{ row.title }}</div>
     </div>
   </div>
 </template>
