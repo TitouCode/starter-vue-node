@@ -1,8 +1,12 @@
 <template>
   <div class="nav-bar-container">
     <div class="nav-bar-items-container">
-        <router-link to="/post" tag="div" class="nav-bar-item">Go see Posts</router-link>
-        <router-link to="/todo" tag="div" class="nav-bar-item">Go to Todos</router-link>
+        <router-link to="/post" tag="div" class="nav-bar-item">
+            <div class="nav-bar-item-title">Go see Posts</div>
+        </router-link>
+        <router-link to="/todo" tag="div" class="nav-bar-item">
+            <div class="nav-bar-item-title">Go to Todos</div>
+        </router-link>
     </div>
   </div>
 </template>
@@ -19,24 +23,30 @@
 </script>
 
 <style lang="scss">
+    @import 'styles/main.scss';
+
     .nav-bar-container {
-        border-bottom: solid 2px rgb(73, 222, 201);
+        border-bottom: solid 2px $green;
         height: 50px;
         width: 100%;
         .nav-bar-items-container {
             display: flex;
-            height: 100%;;
+            justify-content: flex-end;
+            height: 100%; 
         }
         .nav-bar-item {
-            background-color: initial;
-            transition: background-color .2s ease-in;
             height: 100%;
-            width: 100%;
+            width: 150px;
+            @include circle-after-hover($green, 200px);
+            .nav-bar-item-title {
+                color: $black;
+                transform: color .15s ease-in;    
+            }
             &:hover {
-                cursor: pointer;
-                background-color: rgba(73, 222, 201, .5);
-                // GREEN rgb(73, 222, 201)
-                transition: background-color .2s ease-out;
+                .nav-bar-item-title {
+                    color: $white;
+                    transform: color .15s ease-out;
+                }
             }
         }
     }

@@ -36,9 +36,15 @@
                 isLoading: s => s.posts.isLoading
             })
         },
+        created: async function() {
+            await this.fetchPosts();
+        },
         methods: {
-            clickToFetch: async function() {
+            fetchPosts: async function() {
                 return await this.$store.dispatch('posts/findAll');
+            },
+            clickToFetch: async function() {
+                return await this.fetchPosts();
             }
         }
     }

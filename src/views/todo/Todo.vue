@@ -36,9 +36,15 @@
                 isLoading: s => s.todos.isLoading
             })
         },
+        created: async function() {
+            await this.fetchTodos();
+        },
         methods: {
-            clickToFetch: async function() {
+            fetchTodos: async function() {
                 return await this.$store.dispatch('todos/findAll');
+            },
+            clickToFetch: async function() {
+                return await this.fetchTodos();
             }
         }
     }
