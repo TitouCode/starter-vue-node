@@ -23,6 +23,7 @@
                 v-for="row in rows"
                 :key="row.id"
                 :class="{ 'checked': row.completed }"
+                @click="toggleTodo(row.id)"
             >
                 <div class="todo-check" />
                 <div class="todo-title">{{ row.title }}</div>
@@ -56,8 +57,17 @@
             fetchTodos: async function() {
                 return await this.$store.dispatch('todos/findAll');
             },
+
             clickToFetch: async function() {
                 return await this.fetchTodos();
+            },
+            /**
+             * Toggle todo and update db
+             * @param {int} id Id of the desired todo
+             */
+            toggleTodo: async function(id) {
+                if (!id || id < 0) return false;
+                return await this.$store.dispatch('todos/toggleTodo', { id });
             }
         }
     }
@@ -107,19 +117,20 @@
             display: flex;
             flex-wrap: wrap;
             margin: 5px 0;
-        }
-        .checked {
-            .todo-check {
-                background: $green;
-                &::after, &::before {
-                    visibility: visible;
-                } 
-            }  
-            .todo-title {
-                text-decoration: line-through; 
-                font-style: italic;
-                opacity: .6;
-            }  
+            cursor: pointer;
+            &.checked, &:hover {
+                .todo-check {
+                    background: $green;
+                    &::after, &::before {
+                        visibility: visible;
+                    } 
+                }  
+                .todo-title {
+                    text-decoration: line-through; 
+                    font-style: italic;
+                    opacity: .6;
+                }  
+            }
         }
         .todo-check {
             border: solid 2px $green;
@@ -128,6 +139,14 @@
             overflow: hidden;
             position: relative;
             width: 20px;
+            &:hover {
+                cursor: pointer;
+                background: $green;
+                opacity: .5;
+                &::after, &::before {
+                    visibility: visible;
+                }
+            }
             &::after, &::before {
                 visibility: hidden; 
                 content: '';

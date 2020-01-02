@@ -1,5 +1,4 @@
 TODO:
-- Router (global router)
 - GRAPH QL (VUEX)
 - SERVICE FOR QUERY 
 

@@ -2,10 +2,10 @@
   <div class="nav-bar-container">
     <div class="nav-bar-items-container">
         <router-link to="/post" tag="div" class="nav-bar-item">
-            <div class="nav-bar-item-title">Go see Posts</div>
+            <div class="nav-bar-item-title">Posts</div>
         </router-link>
         <router-link to="/todo" tag="div" class="nav-bar-item">
-            <div class="nav-bar-item-title">Go to Todos</div>
+            <div class="nav-bar-item-title">Todos</div>
         </router-link>
     </div>
   </div>
