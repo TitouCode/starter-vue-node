@@ -54,10 +54,15 @@
             await this.fetchTodos();
         },
         methods: {
+            /**
+             * Fetch Todos via Store
+             */
             fetchTodos: async function() {
                 return await this.$store.dispatch('todos/findAll');
             },
-
+            /**
+             * User click to fetch todos
+             */
             clickToFetch: async function() {
                 return await this.fetchTodos();
             },
@@ -76,39 +81,6 @@
 <style lang="scss">
     @import 'styles/main.scss';
 
-    .title-container {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center; 
-        margin: 15px 0 15px;
-        padding-left: 10px; 
-        .title-content {
-            font-size: 30px;
-        }
-        .title-button {
-            background: none;
-            border: solid 2px $green;
-            border-radius: 50%; 
-            height: 25px;
-            margin-left: 15px;
-            width: 25px;
-            text-align: center;
-            @include circle-after-hover($green, 50px);
-            .title-button-title {
-                color: $black;
-                transform: color .15s ease-in;    
-            }
-            &:hover {
-                .title-button-title {
-                    color: $white;
-                    transform: color .15s ease-out;
-                }
-            }
-        }
-        .loader-container {
-            margin-left: 15px; 
-        }
-    }
     .todos-container {
         height: 100%;
         padding: 10px;

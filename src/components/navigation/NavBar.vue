@@ -1,11 +1,15 @@
 <template>
   <div class="nav-bar-container">
     <div class="nav-bar-items-container">
-        <router-link to="/post" tag="div" class="nav-bar-item">
-            <div class="nav-bar-item-title">Posts</div>
-        </router-link>
-        <router-link to="/todo" tag="div" class="nav-bar-item">
-            <div class="nav-bar-item-title">Todos</div>
+        <router-link
+            v-for="r in routes"
+            :key="r.name"
+            :to="r.url"
+            tag="div"
+            class="nav-bar-item"
+            :class="currentPage.includes(r.url) ? activeLinkClass : ''"
+        >
+            <div class="nav-bar-item-title">{{r.name}}</div>
         </router-link>
     </div>
   </div>
@@ -15,9 +19,24 @@
     export default {
         name: 'NavBar',
         data: () => {
-            return {}   
+            return {
+                activeLinkClass: 'active',
+                routes: [
+                    {
+                        name: 'Post',
+                        url: '/post'
+                    }, {
+                        name: 'Todo',
+                        url: '/todo'
+                    }
+                ]
+            }   
         },
-        computed: {},
+        computed: {
+            currentPage() {
+                return this.$route.path;
+            }
+        },
         methods: {}
     }
 </script>
@@ -43,7 +62,7 @@
                 color: $black;
                 transform: color .15s ease-in;    
             }
-            &:hover {
+            &:hover, &.active {
                 .nav-bar-item-title {
                     color: $white;
                     transform: color .15s ease-out;

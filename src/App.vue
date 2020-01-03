@@ -24,14 +24,8 @@
 </script>
 
 <style lang="scss">
-    * {
-        box-sizing: border-box;
-    }
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: sans-serif;
-    }
+    @import 'styles/main.scss';
+    
     .nav-bar-home {
         position: fixed;
         top: 0;
