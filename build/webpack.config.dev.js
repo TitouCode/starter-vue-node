@@ -86,6 +86,7 @@ module.exports = {
             views: path.resolve(__dirname, '../src/views'),
             components: path.resolve(__dirname, '../src/components'),
             styles: path.resolve(__dirname, '../src/styles'),
+            filters: path.resolve(__dirname, '../src/filters'),
         }
     } 
 }

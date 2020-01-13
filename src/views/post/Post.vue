@@ -30,8 +30,8 @@
                     class="row-img"
                 >
             </figure>
-            <div class="row-title-container">
-                {{ row.title }}
+            <div class="row-title-container" :title="row.title">
+                {{ row.title | truncate(20) }}
             </div>
         </div>
     </div>
