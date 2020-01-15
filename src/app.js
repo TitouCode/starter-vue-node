@@ -6,7 +6,6 @@ import store from 'store/store.js'
 
 import 'filters/filters.js'
 
-
 import { router } from './router'
 
 new Vue({
