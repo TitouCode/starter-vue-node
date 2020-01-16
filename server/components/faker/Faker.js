@@ -24,7 +24,6 @@ class Faker {
             if (err) throw err;
             console.log('Posts succesfully generated!');
         });
-
         return posts;
     }
 
@@ -66,7 +65,7 @@ class Faker {
      * @param {int} min Minimum of the interval
      * @param {int} max Maximum of the interval
      */
-    getRdmNumber (max = 1000, min = 0,) {
+    getRdmNumber (max = 1000, min = 0) {
         return Math.floor(Math.random() * (max - min) + min);
     }
 }

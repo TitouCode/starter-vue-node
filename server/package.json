@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --watch . 4000",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "link-module-alias"
   },
   "author": "",
   "license": "ISC",
@@ -14,10 +15,17 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
+    "link-module-alias": "^1.2.0",
     "nodemon": "^2.0.2"
   },
   "nodemonConfig": {
-    "ignore": ["data/*"],
-    "delay": "2500"
+    "ignore": [
+      "data/*"
+    ],
+    "delay": "1000"
+  },
+  "_moduleAliases": {
+    "@components": "./components",
+    "@data": "./data"
   }
 }

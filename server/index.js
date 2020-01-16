@@ -13,7 +13,13 @@ app.use(cors());
 app.listen(4000);
 console.log('Running API at localhost:4000');
 
-const Faker = require('./modules/faker/Faker.js');
-const faker = new Faker();
-faker.generatePost();
-faker.generateTodos();
+// Faker --> TODO make a command to execute only once
+// const Faker = require('@components/faker/Faker.js');
+// const faker = new Faker();
+// faker.generatePost();
+// faker.generateTodos();
+
+const Extractor = require('@components/extractor/Extractor.js');
+const extractor = new Extractor();
+const json = extractor.getDataFromFile();
+console.log(json);
